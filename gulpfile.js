@@ -74,17 +74,17 @@ function server() {
 
 function images() {
     return gulp.src(paths.images.src)
-        .pipe.dest(paths.images.dest);
+        .pipe(gulp.dest(paths.images.dest));
 }
 
 function icons() {
     return gulp.src(paths.icons.src)
-        .pipe.dest(paths.icons.dest);
+        .pipe(gulp.dest(paths.icons.dest));
 }
 
 function fonts() {
     return gulp.src(paths.fonts.src)
-        .pipe.dest(paths.fonts.dest);
+        .pipe(gulp.dest(paths.fonts.dest));
 }
 
 exports.templates=templates;
