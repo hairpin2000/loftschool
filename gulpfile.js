@@ -1,5 +1,6 @@
 const gulp=require('gulp');
 const pug=require('gulp-pug');
+const del=require('del');
 
 //styles
 const sass=require('gulp-sass');
@@ -28,7 +29,7 @@ function templates() {
 
 //sass
 function styles() {
-    return gulp.src('./src/styles/app.sass')
+    return gulp.src('./src/styles/app.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(sourcemaps.write())
@@ -36,5 +37,16 @@ function styles() {
         .pipe(gulp.dest(paths.styles.dest))
     }
 
+//del
+function clean() {
+    return del(paths.root);
+}
+
 exports.templates=templates;
 exports.styles=styles;
+exports.del=del;
+
+gulp.task('default', gulp.series(
+    clean,
+    gulp.parallel(styles,templates)
+));
